@@ -1,0 +1,13 @@
+include imgui/project.mk
+
+MUSIC_MANAGER-EXE-NAME = $(BIN)/music-manager-gui-make-exe
+
+
+MUSIC_MANAGER-EXE-SRCS = src/main.cpp \
+						$(IMGUI-SRCS)
+
+
+MUSIC_MANAGER-EXE-OBJS:=$(MUSIC_MANAGER-EXE-SRCS:%.cpp=$(BIN)/%.o)
+${MUSIC_MANAGER-EXE-NAME}: ${MUSIC_MANAGER-EXE-OBJS}
+
+TARGETS+=${MUSIC_MANAGER-EXE-NAME}
