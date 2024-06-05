@@ -23,7 +23,7 @@ int main(int, char**) {
 	if (!glfwInit())
 		return 1;
 
-	GLFWwindow* window = glfwCreateWindow(1280, 720, "ImGui OpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1280, 720, "Music Manager", NULL, NULL);
 	if (window == NULL)
 		return 1;
 	
@@ -56,7 +56,47 @@ int main(int, char**) {
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
+		ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration				|
+									ImGuiWindowFlags_NoNav					|
+									ImGuiWindowFlags_NoMove					|
+									// ImGuiWindowFlags_NoSavedSettings		|
+									ImGuiWindowFlags_MenuBar				|
+									ImGuiWindowFlags_NoBringToFrontOnFocus;
+
 		// Gui stuff
+		if(show_main_window){
+			const ImGuiViewport* viewport = ImGui::GetMainViewport();
+			ImGui::SetNextWindowPos(viewport->Pos);
+			ImGui::SetNextWindowSize(viewport->Size);
+			if (ImGui::Begin("##Fullscreen window", &show_main_window, flags)){
+
+				if (ImGui::BeginMainMenuBar()) {
+					if (ImGui::BeginMenu("Add Song")) {
+						if (ImGui::MenuItem("Create Song From Link", "Ctrl+L")) { 
+						}
+						if (ImGui::MenuItem("Create Song From Youtube", "Ctrl+Y")) { 
+						}
+						if (ImGui::MenuItem("Open", "Ctrl+O")) { 
+						}
+						if (ImGui::MenuItem("Save", "Ctrl+S")) {
+						}
+						if (ImGui::MenuItem("Save as..")) { 
+							}
+						ImGui::EndMenu();
+					}
+					ImGui::EndMainMenuBar();
+				}
+				ImVec2 size = ImGui::GetWindowSize();
+
+				if (ImGui::Button("Press me"))
+					printf("Button has been pressed\n");
+				
+				ImGui::Text("Size of Window: (%f,%f)", size.x, size.y);
+				ImGui::End();
+			}
+		}
+
+
 
 		// Rendering
 		ImGui::Render();
@@ -65,6 +105,7 @@ int main(int, char**) {
 		glViewport(0, 0, display_w, display_h);
 		glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
 		glClear(GL_COLOR_BUFFER_BIT);
+
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		glfwMakeContextCurrent(window);
 		glfwSwapBuffers(window);
