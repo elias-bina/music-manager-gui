@@ -11,6 +11,7 @@
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
 
+#include "tabs_management/render_tab.h"
 
 static void glfw_error_callback(int error, const char* description)
 {
@@ -46,6 +47,7 @@ int main(int, char**) {
 	// Definitions
 	bool show_main_window = true;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); // backbuffer color
+	AppContext context;
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -86,6 +88,9 @@ int main(int, char**) {
 					}
 					ImGui::EndMainMenuBar();
 				}
+
+				RenderTabsManagement(context);
+
 				ImVec2 size = ImGui::GetWindowSize();
 
 				if (ImGui::Button("Press me"))
@@ -94,6 +99,9 @@ int main(int, char**) {
 				ImGui::Text("Size of Window: (%f,%f)", size.x, size.y);
 				ImGui::End();
 			}
+
+
+
 		}
 
 
