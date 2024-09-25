@@ -1,14 +1,15 @@
 #include "imgui.h"
 
-#include "tabs_management/render_tab.h"
+#include "ui/tabs/render_tabs.h"
 
 void RenderTabsManagement(AppContext &context)
 {
-	ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_None;
+	ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_Reorderable;
 	if (ImGui::BeginTabBar("MyTabBar", tab_bar_flags))
 	{
 		if (ImGui::BeginTabItem("List all Songs"))
 		{
+			context.songWidget.Render();
 			ImGui::Text("Hehe, secret Song\nI will see all songs here");
 			ImGui::EndTabItem();
 		}

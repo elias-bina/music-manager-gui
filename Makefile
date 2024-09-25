@@ -10,7 +10,7 @@ CFLAGS+=-fpermissive -Wall -Wextra -Wpedantic -Wfloat-equal -Wformat-nonliteral 
 CFLAGS+=-Wshadow -Wconversion -Werror 
 CFLAGS+=-O0 -g3
 CFLAGS+=-std=c++17
-INCLUDES=-I./include -I./imgui
+INCLUDES=-I./include -I./dependancies
 LDFLAGS+=-fsanitize=undefined,address
 CFLAGS+=-fsanitize=undefined,address
 UNAME_S := $(shell uname -s)
