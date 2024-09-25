@@ -3,7 +3,9 @@
 #include "stb/stb_image.h"
 #include "GLFW/glfw3.h"
 
-bool LoadTextureFromMemory(const void* data, size_t data_size, GLuint* out_texture, int* out_width, int* out_height)
+#include "ressources_loading/texture_load.h"
+
+bool LoadTextureFromMemory(const void* data, size_t data_size, LoadedTexture* texture)
 {
     // Load from file
     int image_width = 0;
@@ -26,15 +28,16 @@ bool LoadTextureFromMemory(const void* data, size_t data_size, GLuint* out_textu
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image_width, image_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
     stbi_image_free(image_data);
 
-    *out_texture = image_texture;
-    *out_width = image_width;
-    *out_height = image_height;
+
+    texture->texture = image_texture;
+    texture->width = image_width;
+    texture->height = image_height;
 
     return true;
 }
 
 // Open and read a file, then forward to LoadTextureFromMemory()
-bool LoadTextureFromFile(const char* file_name, GLuint* out_texture, int* out_width, int* out_height)
+bool LoadTextureFromFile(const char* file_name, LoadedTexture* texture)
 {
     FILE* f = fopen(file_name, "rb");
     if (f == NULL)
@@ -46,7 +49,7 @@ bool LoadTextureFromFile(const char* file_name, GLuint* out_texture, int* out_wi
     fseek(f, 0, SEEK_SET);
     void* file_data = malloc(file_size);
     fread(file_data, 1, file_size, f);
-    bool ret = LoadTextureFromMemory(file_data, file_size, out_texture, out_width, out_height);
+    bool ret = LoadTextureFromMemory(file_data, file_size, texture);
     free(file_data);
     return ret;
 }

@@ -1,6 +1,6 @@
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
 #include <stdio.h>
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
@@ -48,6 +48,9 @@ int main(int, char**) {
 	bool show_main_window = true;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); // backbuffer color
 	AppContext context;
+
+	context.songWidgets.AddSong("Emil - Sacrifice");
+	context.songWidgets.AddSong("Chime & DNAKM- Make 'em Proud");
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -103,6 +106,8 @@ int main(int, char**) {
 				}
 
 				RenderTabsManagement(context);
+
+				ImGui::SeparatorText("Global Display");
 
 				ImVec2 size = ImGui::GetWindowSize();
 

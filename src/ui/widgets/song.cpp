@@ -1,24 +1,22 @@
 #include "imgui/imgui.h"
 
-#include "texture_load/texture_load.h"
+#include "ressources_loading/texture_load.h"
 #include "ui/widgets/song.h"
 
 
 
-SongWidget::SongWidget(/* args */)
+SongWidget::SongWidget(std::string name, LoadedTexture* texture): _texture{texture}, _name{name}
 {
-	bool ret = LoadTextureFromFile("ressources/DownloadIconWhite.png", &my_image_texture, &my_image_width, &my_image_height);
-	IM_ASSERT(ret);
 }
 
 void SongWidget::Render(){
 	// TODO: Add tooltip
-	ImGui::Text("<Song Name>");
+	ImGui::Text(_name.c_str());
 	ImGui::SameLine();
 
 	ImGuiIO io = ImGui::GetIO();
 
-	ImGui::Image((void*)(intptr_t)my_image_texture, ImVec2(my_image_width, my_image_height));
+	ImGui::Image((void*)(intptr_t)_texture->texture, ImVec2(_texture->width, _texture->height));
 
 	// ImTextureID my_tex_id = io.Fonts->TexID;
 	// float my_tex_w = (float)io.Fonts->TexWidth;

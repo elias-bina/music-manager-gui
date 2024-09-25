@@ -1,7 +1,7 @@
 #ifndef MMG_CONTEXT_MANAGEMENT_APP_CONTEXT
 #define MMG_CONTEXT_MANAGEMENT_APP_CONTEXT
 
-#include "ui/widgets/song.h"
+#include "ui/widgets/song-list.h"
 class AppContext
 {
 private:
@@ -10,7 +10,7 @@ public:
 	AppContext(/* args */);
 	~AppContext();
 
-	SongWidget songWidget; // TODO: Should be a list
+	SongWidgetList songWidgets;
 };
 
 #endif

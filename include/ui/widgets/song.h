@@ -1,17 +1,20 @@
 #ifndef MMG_UI_WIDGETS_SONG
 #define MMG_UI_WIDGETS_SONG
 
+#include <string>
+
 #include "widget.h"
 #include "GLFW/glfw3.h"
+
+#include "ressources_loading/texture_load.h"
 
 class SongWidget : RenderableWidget
 {
 private:
-	int my_image_width = 0;
-	int my_image_height = 0;
-	GLuint my_image_texture = 0;
+	LoadedTexture* _texture;
+	std::string _name;
 public:
-	SongWidget(/* args */);
+	SongWidget(std::string name,LoadedTexture* texture);
 	~SongWidget();
 
 	void Render();

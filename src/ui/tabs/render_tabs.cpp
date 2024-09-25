@@ -1,4 +1,4 @@
-#include "imgui.h"
+#include "imgui/imgui.h"
 
 #include "ui/tabs/render_tabs.h"
 
@@ -9,8 +9,7 @@ void RenderTabsManagement(AppContext &context)
 	{
 		if (ImGui::BeginTabItem("List all Songs"))
 		{
-			context.songWidget.Render();
-			ImGui::Text("Hehe, secret Song\nI will see all songs here");
+			context.songWidgets.Render();
 			ImGui::EndTabItem();
 		}
 		if (ImGui::BeginTabItem("Search"))
