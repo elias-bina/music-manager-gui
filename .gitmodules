@@ -1,0 +1,3 @@
+[submodule "dependancies/yt-dlp"]
+	path = dependancies/yt-dlp
+	url = https://github.com/yt-dlp/yt-dlp.git
