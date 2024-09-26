@@ -31,21 +31,21 @@ void SongWidget::Render(){
 
 	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
 
-	ImGui::Text(_name.c_str());
+	ImGui::Text("%s", _name.c_str());
 	
 	if(!_downloaded){
 	
 		ImGui::SameLine();
 
 		int spacing = 10;
-		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - _texture->width - spacing);
+		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - (float)_texture->width - (float)spacing);
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
 		// ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(-1.0f,- 1.0f));
-		if(ImGui::ImageButton(("##Button" +  _name).c_str(),(void*)(intptr_t)_texture->texture, ImVec2(_texture->width, _texture->height))){
+		if(ImGui::ImageButton(("##Button" +  _name).c_str(),(void*)(intptr_t)_texture->texture, ImVec2( (float)_texture->width,  (float)_texture->height))){
 			
 			_downloaded = true;
 			
-			printf(("TELECHARGE " + _link + " BATARD\n").c_str());
+			printf("%s", ("TELECHARGE " + _link + " BATARD\n").c_str());
 
 			if (fork() == 0) {
 			/*

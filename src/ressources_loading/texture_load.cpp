@@ -1,6 +1,9 @@
 
 #define STB_IMAGE_IMPLEMENTATION
+#pragma GCC diagnostic ignored "-Wconversion"
 #include "stb/stb_image.h"
+#pragma GCC diagnostic pop
+
 #include "GLFW/glfw3.h"
 
 #include "ressources_loading/texture_load.h"
@@ -43,7 +46,7 @@ bool LoadTextureFromFile(const char* file_name, LoadedTexture* texture)
     if (f == NULL)
         return false;
     fseek(f, 0, SEEK_END);
-    size_t file_size = (size_t)ftell(f);
+    long file_size = ftell(f);
     if (file_size == -1)
         return false;
     fseek(f, 0, SEEK_SET);

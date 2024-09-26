@@ -1,3 +1,8 @@
+#pragma GCC diagnostic ignored "-Wfloat-equal"
+#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wmissing-format-attribute"
+#pragma GCC diagnostic ignored "-Wmissing-noreturn"
+
 // dear imgui, v1.90.8 WIP
 // (widgets code)
 

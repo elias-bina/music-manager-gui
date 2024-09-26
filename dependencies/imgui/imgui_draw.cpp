@@ -31,6 +31,9 @@ Index of this file:
 #define IMGUI_DEFINE_MATH_OPERATORS
 #endif
 
+#pragma GCC diagnostic ignored "-Wfloat-equal"
+#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wmissing-format-attribute"
 #include "imgui.h"
 #ifndef IMGUI_DISABLE
 #include "imgui_internal.h"

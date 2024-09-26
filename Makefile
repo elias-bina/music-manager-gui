@@ -6,7 +6,7 @@ all:true-all
 
 BIN?=bin
 TARGETS=
-CFLAGS+=-fpermissive -Wall -Wextra -Wpedantic -Wfloat-equal -Wformat-nonliteral -Wformat-security -Wformat-y2k -Wformat=2 -Wimport -Winvalid-pch -Wmissing-declarations -Wmissing-field-initializers -Wmissing-format-attribute -Wmissing-include-dirs -Wmissing-noreturn -Wpacked -Wpointer-arith -Wredundant-decls -Wstack-protector -Wundef -Wwrite-strings
+CFLAGS+=-fpermissive -Wall -Wextra -Wpedantic -Wfloat-equal -Wformat-nonliteral -Wformat-security -Wformat-y2k -Wformat=2 -Wimport -Winvalid-pch -Wmissing-declarations -Wmissing-field-initializers -Wmissing-format-attribute -Wmissing-include-dirs -Wmissing-noreturn -Wpacked -Wpointer-arith -Wredundant-decls -Wstack-protector -Wwrite-strings
 CFLAGS+=-Wshadow -Wconversion -Werror 
 CFLAGS+=-O0 -g3
 CFLAGS+=-std=c++17

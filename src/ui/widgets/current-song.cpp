@@ -10,7 +10,7 @@ void CurrentSongWidget::Render(){
 	if(_current_song == NULL){
 		ImGui::Text("No song selected");
 	} else	{
-		ImGui::Text(_current_song->getName().c_str());
+		ImGui::Text("%s",_current_song->getName().c_str());
 	}
 }
 
