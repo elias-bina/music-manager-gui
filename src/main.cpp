@@ -49,8 +49,69 @@ int main(int, char**) {
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); // backbuffer color
 	AppContext context;
 
-	context.songWidgets.AddSong("Emil - Sacrifice");
-	context.songWidgets.AddSong("Chime & DNAKM- Make 'em Proud");
+	context._songWidgets.AddSong("Emil - Sacrifice");
+	context._songWidgets.AddSong("Chime & DNAKM - Make 'em Proud");
+	context._songWidgets.AddSong("Transistor - Cut Apart");
+	context._songWidgets.AddSong("Mob Psycho 100 - Esprspt");
+	context._songWidgets.AddSong("Mo:Astray - Escape");
+	context._songWidgets.AddSong("Mo:Astray - The Errors");
+	context._songWidgets.AddSong("Mo:Astray - Surface B");
+	context._songWidgets.AddSong("Mo:Astray - Unknown Area");
+	context._songWidgets.AddSong("Mo:Astray - Fallen");
+	context._songWidgets.AddSong("Sonic Colors - Out of Breath");
+	context._songWidgets.AddSong("Pokemon Mystery Dungeon Explorers of Sky - Time Gear");
+	context._songWidgets.AddSong("Pokemon Mystery Dungeon Explorers of Sky - I saw something again...");
+	context._songWidgets.AddSong("Bravely default - Serpent Eating the Ground (4:40)");
+	context._songWidgets.AddSong("Sonic and the Black Knight - Knight of the wind");
+	context._songWidgets.AddSong("Sonic and the Black Knight - Shrouded Forest");
+	context._songWidgets.AddSong("Sonic and the Black Knight - Battle Menu");
+	context._songWidgets.AddSong("Sonic and the Black Knight - With Me");
+	context._songWidgets.AddSong("Getsix - Valhalla (0:54)");
+	context._songWidgets.AddSong("Feint - Let me go (1:06)");
+	context._songWidgets.AddSong("MDK - Lightspeed (0:51)");
+	context._songWidgets.AddSong("Mob Psycho 100 - Explosion of Mobs Feelings (0:14)");
+	context._songWidgets.AddSong("Sonic Rush - Vela-Nova (Part 2)");
+	context._songWidgets.AddSong("Sonic Rush - A New Day");
+	context._songWidgets.AddSong("Sonic Rush - Bomber Barbara");
+	context._songWidgets.AddSong("Sonic Rush - Bomber Barbara (Silent Dreams Remix)");
+	context._songWidgets.AddSong("Pokemon Scarlet & Violet - Final Fight");
+	context._songWidgets.AddSong("One Punch Man - Seigi Shikkou");
+	context._songWidgets.AddSong("Dead Cells - Fractured Shrines (0:06)");
+	context._songWidgets.AddSong("Sonic Colors - Reach for the Stars");
+	context._songWidgets.AddSong("Sonic Colors - Terminal Velocity");
+	context._songWidgets.AddSong("Pokemon Mystery Dungeon Explorers of Sky - Oh no !");
+	context._songWidgets.AddSong("Pokemon Mystery Dungeon The Bright Future - I Wont Say Goodbye (0:20)");
+	context._songWidgets.AddSong("Pokemon Mystery Dungeon Explorers of Sky - Ending Theme");
+	context._songWidgets.AddSong("Hollow Knight - Hornet");
+	context._songWidgets.AddSong("Hollow Knight - Mantis Lords");
+	context._songWidgets.AddSong("Hollow Knight - Truth, Beauty and Hatred");
+	context._songWidgets.AddSong("Kirby and the Forgotten Land - Masked and Wild:DDD");
+	context._songWidgets.AddSong("Kirby and the Forgotten Land - King Dedede, Roar of Dedede");
+	context._songWidgets.AddSong("Kirby and the Forgotten Land - The King's Turn to Shine");
+	context._songWidgets.AddSong("Super Pokemon Rumble - Charge Battle");
+	context._songWidgets.AddSong("Sonic Frontiers - Cyber Space 1-5: Dropaholic (0:23)");
+	context._songWidgets.AddSong("Sonic Frontiers - Cyber Space 1-7: Time Flyer");
+	context._songWidgets.AddSong("Sonic Frontiers - Cyber Space 4-1: Exceed Match (0:49)");
+	context._songWidgets.AddSong("Sonic Frontiers - Guardian: STRIDER");
+	context._songWidgets.AddSong("Sonic Frontiers - Guardian: TANK");
+	context._songWidgets.AddSong("Sonic Frontiers - Guardian: GHOST");
+	context._songWidgets.AddSong("Sonic Frontiers - I'm here (0:30)");
+	context._songWidgets.AddSong("Sonic Frontiers - Undefeatable (0:10)");
+	context._songWidgets.AddSong("Sonic Frontiers - Break Through it all");
+	context._songWidgets.AddSong("Sonic Frontiers - Find Your Flame (0:50)");
+	context._songWidgets.AddSong("Sonic Frontiers - I'm Here (Orchestral Ver.)");
+	context._songWidgets.AddSong("Sonic Frontiers - I'm Here (Revisited)");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Boss Fight 1");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Magnus's Theme");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Dark Pit");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Dark Pit's Theme");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Boss Theme 2");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Thunder Cloud Temple");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Chaos Island");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Lord Of The Underworld");
+	context._songWidgets.AddSong("Kid Icarus Uprising - Together Menu");
+
+
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -105,16 +166,28 @@ int main(int, char**) {
 					ImGui::EndMainMenuBar();
 				}
 
+				ImGui::BeginGroup();
 				RenderTabsManagement(context);
+				ImGui::EndGroup();
 
-				ImGui::SeparatorText("Global Display");
+				ImGui::SameLine();
+				
+				ImGui::BeginGroup();
+
+				ImGui::Text(" ");
+				ImGui::SeparatorText("Selected Song");
+
+				context._currentSong.Render();
 
 				ImVec2 size = ImGui::GetWindowSize();
 
 				if (ImGui::Button("Press me"))
 					printf("Button has been pressed\n");
 				
-				ImGui::Text("Size of Window: (%f,%f)", size.x, size.y);
+				ImGui::Text("Size of Window: (%f,%f); Framerate = %f", size.x, size.y, io.Framerate);
+				ImGui::EndGroup();
+
+
 				ImGui::End();
 			}
 

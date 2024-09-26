@@ -9,7 +9,7 @@ void RenderTabsManagement(AppContext &context)
 	{
 		if (ImGui::BeginTabItem("List all Songs"))
 		{
-			context.songWidgets.Render();
+			context._songWidgets.Render();
 			ImGui::EndTabItem();
 		}
 		if (ImGui::BeginTabItem("Search"))

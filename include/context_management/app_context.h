@@ -2,6 +2,8 @@
 #define MMG_CONTEXT_MANAGEMENT_APP_CONTEXT
 
 #include "ui/widgets/song-list.h"
+#include "ui/widgets/current-song.h"
+
 class AppContext
 {
 private:
@@ -10,7 +12,8 @@ public:
 	AppContext(/* args */);
 	~AppContext();
 
-	SongWidgetList songWidgets;
+	CurrentSongWidget _currentSong;
+	SongWidgetList _songWidgets;
 };
 
 #endif

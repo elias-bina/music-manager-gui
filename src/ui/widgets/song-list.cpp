@@ -1,3 +1,4 @@
+#include <memory>
 #include "imgui/imgui.h"
 
 
@@ -11,12 +12,25 @@ SongWidgetList::SongWidgetList()
 
 void SongWidgetList::Render(){
 
-	for(long unsigned int i = 0; i < _song_list.size(); i++){
-		_song_list[i].Render();
+	ImGui::BeginChild("SongListShown", ImVec2(ImGui::GetContentRegionAvail().x * 0.5f, ImGui::GetContentRegionAvail().y), ImGuiChildFlags_None, ImGuiWindowFlags_HorizontalScrollbar);
+
+	for(std::shared_ptr<SongWidget> song: _song_list){
+		song->Render();
+		if(song->isSelected()){
+			_current_song = song;
+		}
 	}
+
+	ImGui::EndChild();
 
 }
 
 void SongWidgetList::AddSong(std::string song_name){
-	_song_list.push_back(SongWidget(song_name, &_download_icon));
+	_song_list.push_back(std::make_shared<SongWidget>(song_name, &_download_icon, this));
 }
+
+void SongWidgetList::DeselectAllSongs(){
+	for(std::shared_ptr<SongWidget> song: _song_list)
+		song->deselect();
+}
+
