@@ -1,4 +1,4 @@
-include dependancies/imgui/project.mk
+include dependencies/imgui/project.mk
 include src/context_management/project.mk
 include src/ressources_loading/project.mk
 include src/ui/project.mk
