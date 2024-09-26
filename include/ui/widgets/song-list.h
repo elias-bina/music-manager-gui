@@ -25,7 +25,7 @@ public:
 	std::vector<std::shared_ptr<SongWidget>> _song_list;
 	void Render();
 
-	void AddSong(std::string song_name);
+	void AddSong(std::string song_name, std::string song_link);
 	void DeselectAllSongs();
 
 	void songUpdateNotify(std::shared_ptr<SongWidget> chosen_song);

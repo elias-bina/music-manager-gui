@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 
 #include "imgui/imgui.h"
 
@@ -7,7 +8,7 @@
 
 
 
-SongWidget::SongWidget(std::string name, LoadedTexture* texture): _texture{texture}, _name{name}, _is_selected{false}
+SongWidget::SongWidget(std::string name, std::string link, LoadedTexture* texture): _texture{texture}, _name{name}, _link{link}, _is_selected{false}
 {
 }
 
@@ -20,12 +21,11 @@ void SongWidget::Render(){
 	
 	ImGui::AlignTextToFramePadding();
 	
-
+	ImGui::SetNextItemAllowOverlap();
 	if(ImGui::Selectable(("##" +  _name).c_str() , _is_selected, 0, ImVec2(0,20))){
 		_should_update = true;
 	}
 	// ImGui::Spacing();
-
 	ImGui::SameLine();
 
 	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
@@ -36,8 +36,24 @@ void SongWidget::Render(){
 
 	int spacing = 10;
 	ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - _texture->width - spacing);
-	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5);
-	ImGui::Image((void*)(intptr_t)_texture->texture, ImVec2(_texture->width, _texture->height));
+	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
+	// ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(-1.0f,- 1.0f));
+	if(ImGui::ImageButton(("##Button" +  _name).c_str(),(void*)(intptr_t)_texture->texture, ImVec2(_texture->width, _texture->height))){
+		printf(("TELECHARGE " + _link + " BATARD\n").c_str());
+		if (fork() == 0) {
+          /*
+           * fork() returns 0 to the child process
+           * and the child's PID to the parent.
+           */
+          execl("./dependencies/yt-dlp/yt-dlp.sh", "yt-dlp.sh", _link.c_str(), "-x", "--audio-format", "mp3", "-o", ("downloaded_songs/" + _name).c_str(), 0);
+          /*
+           * We wouldn't still be here if execl() was successful,
+           * so a non-zero exit value is appropriate.
+           */
+          exit(1);
+     	}
+	}
+	// ImGui::PopStyleVar();
 
 
 

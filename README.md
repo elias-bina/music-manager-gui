@@ -1,3 +1,3 @@
 # music-manager-gui
 
-TODO: Update Dependancies automatically
+TODO: Update Dependencies automatically

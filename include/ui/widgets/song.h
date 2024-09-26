@@ -18,13 +18,14 @@ class SongWidget : RenderableWidget
 private:
 	LoadedTexture* _texture;
 	std::string _name;
+	std::string _link;
 	bool _is_selected;
 	bool _should_update;
 
 	std::vector<SongObserver*> _list_observers;
 
 public:
-	SongWidget(std::string name, LoadedTexture* texture);
+	SongWidget(std::string name, std::string link, LoadedTexture* texture);
 	~SongWidget();
 
 	void Render();

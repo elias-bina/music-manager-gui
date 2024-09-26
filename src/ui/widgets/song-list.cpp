@@ -23,8 +23,8 @@ void SongWidgetList::Render(){
 
 }
 
-void SongWidgetList::AddSong(std::string song_name){
-	_song_list.push_back(std::make_shared<SongWidget>(song_name, &_download_icon));
+void SongWidgetList::AddSong(std::string song_name, std::string song_link){
+	_song_list.push_back(std::make_shared<SongWidget>(song_name, song_link, &_download_icon));
 	_song_list.back()->addObserver(this);
 }
 
