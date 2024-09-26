@@ -1,6 +1,6 @@
-[submodule "dependencies/yt-dlp"]
-	path = dependencies/yt-dlp
-	url = https://github.com/yt-dlp/yt-dlp.git
 [submodule "dependencies/glfw"]
 	path = dependencies/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "dependencies/yt-dlp"]
+	path = dependencies/yt-dlp
+	url = https://github.com/yt-dlp/yt-dlp.git
