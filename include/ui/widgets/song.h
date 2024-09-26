@@ -4,13 +4,14 @@
 class SongWidget;
 
 #include <string>
+#include <memory>
+#include <vector>
 
 #include "widget.h"
 #include "GLFW/glfw3.h"
 
 #include "ressources_loading/texture_load.h"
-#include "ui/widgets/song-list.h"
-
+#include "ui/widgets/song-observer.h"
 
 class SongWidget : RenderableWidget
 {
@@ -18,17 +19,24 @@ private:
 	LoadedTexture* _texture;
 	std::string _name;
 	bool _is_selected;
-	SongWidgetList* _list_songs;
+	bool _should_update;
+
+	std::vector<SongObserver*> _list_observers;
 
 public:
-	SongWidget(std::string name, LoadedTexture* texture, SongWidgetList* _list_songs);
+	SongWidget(std::string name, LoadedTexture* texture);
 	~SongWidget();
 
 	void Render();
+	void Update(std::shared_ptr<SongWidget> song);
+
 	std::string getName();
 	bool isSelected();
 	void deselect();
+	void select();
 
+	void addObserver(SongObserver* observer);
+	void notifyObservers(std::shared_ptr<SongWidget> song);
 };
 
 #endif

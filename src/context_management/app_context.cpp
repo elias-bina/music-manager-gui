@@ -3,6 +3,7 @@
 
 AppContext::AppContext(/* args */)
 {
+	_songWidgets._current_song = &_currentSong;
 }
 
 AppContext::~AppContext()

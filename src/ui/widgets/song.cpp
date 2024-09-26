@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "imgui/imgui.h"
 
 #include "ressources_loading/texture_load.h"
@@ -5,7 +7,7 @@
 
 
 
-SongWidget::SongWidget(std::string name, LoadedTexture* texture, SongWidgetList* list_songs): _texture{texture}, _name{name}, _is_selected{false}, _list_songs{list_songs}
+SongWidget::SongWidget(std::string name, LoadedTexture* texture): _texture{texture}, _name{name}, _is_selected{false}
 {
 }
 
@@ -20,8 +22,7 @@ void SongWidget::Render(){
 	
 
 	if(ImGui::Selectable(("##" +  _name).c_str() , _is_selected, 0, ImVec2(0,20))){
-		_list_songs->DeselectAllSongs();
-		_is_selected = true;
+		_should_update = true;
 	}
 	// ImGui::Spacing();
 
@@ -53,6 +54,14 @@ void SongWidget::Render(){
 
 }
 
+void  SongWidget::Update(std::shared_ptr<SongWidget> song){
+	if(_should_update){
+		notifyObservers(song);
+		_should_update = false;
+	}
+}
+
+
 
 std::string SongWidget::getName(){
 	return _name;
@@ -64,4 +73,18 @@ bool SongWidget::isSelected(){
 
 void SongWidget::deselect(){
 	_is_selected = false;
+}
+
+void SongWidget::select(){
+	_is_selected = true;
+}
+
+void SongWidget::addObserver(SongObserver* observer){
+	_list_observers.push_back(observer);
+}
+
+void SongWidget::notifyObservers(std::shared_ptr<SongWidget> song){
+	for(SongObserver* observer: _list_observers){
+		observer->songUpdateNotify(song);
+	}
 }

@@ -8,15 +8,18 @@ class SongWidgetList;
 
 #include "ressources_loading/texture_load.h"
 
-#include "widget.h"
-#include "song.h"
+#include "ui/widgets/current-song.h"
+#include "ui/widgets/song.h"
+#include "ui/widgets/widget.h"
 
-class SongWidgetList : RenderableWidget
+class SongWidgetList : RenderableWidget, SongObserver
 {
 private:
 	LoadedTexture _download_icon;
-	std::shared_ptr<SongWidget> _current_song = NULL;
+
 public:
+	CurrentSongWidget* _current_song = NULL;
+
 	SongWidgetList();
 
 	std::vector<std::shared_ptr<SongWidget>> _song_list;
@@ -24,6 +27,8 @@ public:
 
 	void AddSong(std::string song_name);
 	void DeselectAllSongs();
+
+	void songUpdateNotify(std::shared_ptr<SongWidget> chosen_song);
 };
 
 #endif

@@ -52,7 +52,8 @@ int main(int, char**) {
 	context._songWidgets.AddSong("Emil - Sacrifice");
 	context._songWidgets.AddSong("Chime & DNAKM - Make 'em Proud");
 	context._songWidgets.AddSong("Transistor - Cut Apart");
-	context._songWidgets.AddSong("Mob Psycho 100 - Esprspt");
+	context._songWidgets.AddSong("Mob Psycho 100 - Esprit Rampant");
+	context._songWidgets.AddSong("Dead Cells - The Crypt");
 	context._songWidgets.AddSong("Mo:Astray - Escape");
 	context._songWidgets.AddSong("Mo:Astray - The Errors");
 	context._songWidgets.AddSong("Mo:Astray - Surface B");
