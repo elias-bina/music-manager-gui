@@ -49,7 +49,7 @@ int main(int, char**) {
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); // backbuffer color
 	AppContext context;
 
-	context._songWidgets.AddSong("Nier Replicant 1.22 - Emil / Sacrifice", "https://www.youtube.com/watch?v=geghzmOuYR8");
+	context._songWidgets.AddSong("Nier Replicant 1.22 - Emil - Sacrifice", "https://www.youtube.com/watch?v=geghzmOuYR8");
 	context._songWidgets.AddSong("Chime & DNAKM - Make 'em Proud", "https://www.youtube.com/watch?v=iVAamocy_OI");
 	context._songWidgets.AddSong("Transistor - Cut Apart", "https://www.youtube.com/watch?v=JzaEWa0BHcA");
 	context._songWidgets.AddSong("Mob Psycho 100 - Esprit Rampant", "https://www.youtube.com/watch?v=XQBSuUHOoRY");

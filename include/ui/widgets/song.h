@@ -19,6 +19,9 @@ private:
 	LoadedTexture* _texture;
 	std::string _name;
 	std::string _link;
+	bool _downloaded;
+
+
 	bool _is_selected;
 	bool _should_update;
 

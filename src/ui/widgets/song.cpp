@@ -10,6 +10,7 @@
 
 SongWidget::SongWidget(std::string name, std::string link, LoadedTexture* texture): _texture{texture}, _name{name}, _link{link}, _is_selected{false}
 {
+	_downloaded = (access(("downloaded_songs/" + name + ".mp3").c_str(), F_OK) == 0);
 }
 
 SongWidget::~SongWidget()
@@ -31,42 +32,37 @@ void SongWidget::Render(){
 	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
 
 	ImGui::Text(_name.c_str());
-	ImGui::SameLine();
+	
+	if(!_downloaded){
+	
+		ImGui::SameLine();
 
+		int spacing = 10;
+		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - _texture->width - spacing);
+		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
+		// ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(-1.0f,- 1.0f));
+		if(ImGui::ImageButton(("##Button" +  _name).c_str(),(void*)(intptr_t)_texture->texture, ImVec2(_texture->width, _texture->height))){
+			
+			_downloaded = true;
+			
+			printf(("TELECHARGE " + _link + " BATARD\n").c_str());
 
-	int spacing = 10;
-	ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - _texture->width - spacing);
-	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
-	// ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(-1.0f,- 1.0f));
-	if(ImGui::ImageButton(("##Button" +  _name).c_str(),(void*)(intptr_t)_texture->texture, ImVec2(_texture->width, _texture->height))){
-		printf(("TELECHARGE " + _link + " BATARD\n").c_str());
-		if (fork() == 0) {
-          /*
-           * fork() returns 0 to the child process
-           * and the child's PID to the parent.
-           */
-          execl("./dependencies/yt-dlp/yt-dlp.sh", "yt-dlp.sh", _link.c_str(), "-x", "--audio-format", "mp3", "-o", ("downloaded_songs/" + _name).c_str(), 0);
-          /*
-           * We wouldn't still be here if execl() was successful,
-           * so a non-zero exit value is appropriate.
-           */
-          exit(1);
-     	}
+			if (fork() == 0) {
+			/*
+			* fork() returns 0 to the child process
+			* and the child's PID to the parent.
+			*/
+			execl("./dependencies/yt-dlp/yt-dlp.sh", "yt-dlp.sh", _link.c_str(), "-x", "--audio-format", "mp3", "-o", ("downloaded_songs/" + _name).c_str(), 0);
+			//   execl("./dependencies/yt-dlp/yt-dlp.sh", "yt-dlp.sh", _link.c_str(), "-x", "--audio-format", "mp3", "-o", ("downloaded_songs/" + _name).c_str(), "-q", 0);
+			/*
+			* We wouldn't still be here if execl() was successful,
+			* so a non-zero exit value is appropriate.
+			*/
+			exit(1);
+			}
+		}
+		// ImGui::PopStyleVar();
 	}
-	// ImGui::PopStyleVar();
-
-
-
-	// ImGuiIO io = ImGui::GetIO();
-	// ImTextureID my_tex_id = io.Fonts->TexID;
-	// float my_tex_w = (float)io.Fonts->TexWidth;
-	// float my_tex_h = (float)io.Fonts->TexHeight;
-	// ImVec2 pos = ImGui::GetCursorScreenPos();
-	// ImVec2 uv_min = ImVec2(0.0f, 0.0f);                 // Top-left
-	// ImVec2 uv_max = ImVec2(1.0f, 1.0f);                 // Lower-right
-	// ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f); // No tint
-	// ImVec4 border_col = ImGui::GetStyleColorVec4(ImGuiCol_Border);
-	// ImGui::Image(my_tex_id, ImVec2(my_tex_w, my_tex_h), uv_min, uv_max, tint_col, border_col);
 
 }
 
