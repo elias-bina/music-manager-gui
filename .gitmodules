@@ -4,6 +4,6 @@
 [submodule "dependencies/yt-dlp"]
 	path = dependencies/yt-dlp
 	url = https://github.com/yt-dlp/yt-dlp.git
-[submodule "dependencies/libvlcpp"]
-	path = dependencies/libvlcpp
-	url = https://code.videolan.org/videolan/libvlcpp.git
+[submodule "dependencies/vlc"]
+	path = dependencies/vlc
+	url = https://github.com/videolan/vlc.git
