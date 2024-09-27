@@ -101,6 +101,11 @@ void SongWidget::select(){
 	_is_selected = true;
 }
 
+bool SongWidget::isDownloaded(){
+	return _downloaded;
+}
+
+
 void SongWidget::addObserver(SongObserver* observer){
 	_list_observers.push_back(observer);
 }

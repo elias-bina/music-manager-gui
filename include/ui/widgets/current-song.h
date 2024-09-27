@@ -10,7 +10,9 @@
 class CurrentSongWidget : RenderableWidget
 {
 private:
-	std::shared_ptr<SongWidget> _current_song = NULL;
+	LoadedTexture _play_texture;
+
+	std::shared_ptr<SongWidget> _current_song = nullptr;
 public:
 	CurrentSongWidget();
 

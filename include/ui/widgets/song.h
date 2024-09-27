@@ -40,6 +40,8 @@ public:
 	void deselect();
 	void select();
 
+	bool isDownloaded();
+
 	void addObserver(SongObserver* observer);
 	void notifyObservers(std::shared_ptr<SongWidget> song);
 };

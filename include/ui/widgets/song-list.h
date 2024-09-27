@@ -19,7 +19,7 @@ private:
 	LoadedTexture _valid_icon;
 
 public:
-	CurrentSongWidget* _current_song = NULL;
+	CurrentSongWidget* _current_song = nullptr;
 
 	SongWidgetList();
 
