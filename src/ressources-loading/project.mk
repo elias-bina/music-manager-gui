@@ -1,1 +1,2 @@
-RESSOURCE-LOAD-SRC = src/ressources-loading/texture-load.cpp
+RESSOURCE-LOAD-SRC = src/ressources-loading/download-management.cpp \
+					 src/ressources-loading/texture-load.cpp
