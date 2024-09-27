@@ -16,6 +16,7 @@ class SongWidgetList : RenderableWidget, SongObserver
 {
 private:
 	LoadedTexture _download_icon;
+	LoadedTexture _valid_icon;
 
 public:
 	CurrentSongWidget* _current_song = NULL;

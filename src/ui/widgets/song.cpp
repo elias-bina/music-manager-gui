@@ -18,7 +18,7 @@
 
 
 
-SongWidget::SongWidget(std::string name, std::string link, LoadedTexture* texture): _texture{texture}, _name{name}, _link{link}, _is_selected{false}, _should_update{0}
+SongWidget::SongWidget(std::string name, std::string link, LoadedTexture* download_texture, LoadedTexture* valid_texture): _download_texture{download_texture}, _valid_texture{valid_texture}, _name{name}, _link{link}, _is_selected{false}, _should_update{0}
 {
 	_downloaded = (access(("downloaded_songs/" + name + ".mp3").c_str(), F_OK) == 0);
 }
@@ -33,25 +33,28 @@ void SongWidget::Render(){
 	ImGui::AlignTextToFramePadding();
 	
 	ImGui::SetNextItemAllowOverlap();
-	if(ImGui::Selectable(("##" +  _name).c_str() , _is_selected, 0, ImVec2(0,20))){
+	if(ImGui::Selectable(("##" +  _name).c_str() , _is_selected, 0, ImVec2(0,21))){
 		_should_update = true;
 	}
 	// ImGui::Spacing();
 	ImGui::SameLine();
 
-	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
+	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 3);
 
 	ImGui::Text("%s", _name.c_str());
 	
+	ImGui::SameLine();
+
+
+
 	if(!_downloaded){
 	
-		ImGui::SameLine();
-
 		int spacing = 10;
-		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - (float)_texture->width - (float)spacing);
+		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - (float)_download_texture->width - (float)spacing);
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2);
+
 		// ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(-1.0f,- 1.0f));
-		if(ImGui::ImageButton(("##Button" +  _name).c_str(),(void*)(intptr_t)_texture->texture, ImVec2( (float)_texture->width,  (float)_texture->height))){
+		if(ImGui::ImageButton(("##Button" +  _name).c_str(),(void*)(intptr_t)_download_texture->texture, ImVec2( (float)_download_texture->width,  (float)_download_texture->height))){
 			
 			_downloaded = true;
 			
@@ -102,6 +105,13 @@ void SongWidget::Render(){
 #endif
 		}
 		// ImGui::PopStyleVar();
+	} else {
+
+		int spacing = 10;
+		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - (float)_download_texture->width - (float)spacing + 4);
+		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5);
+
+		ImGui::Image((void*)(intptr_t)_valid_texture->texture, ImVec2( (float)_valid_texture->width,  (float)_valid_texture->height), ImVec2(0, 0), ImVec2(1, 1), ImVec4(1, 1, 1, 1), ImVec4(0, 0, 0, 0));
 	}
 
 }
