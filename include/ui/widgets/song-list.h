@@ -6,7 +6,7 @@ class SongWidgetList;
 #include <memory>
 #include <vector>
 
-#include "ressources_loading/texture_load.h"
+#include "ressources-loading/texture-load.h"
 
 #include "ui/widgets/current-song.h"
 #include "ui/widgets/song.h"

@@ -1,6 +1,6 @@
 #include "imgui/imgui.h"
 
-#include "ui/tabs/render_tabs.h"
+#include "ui/tabs/render-tabs.h"
 
 void RenderTabsManagement(AppContext &context)
 {

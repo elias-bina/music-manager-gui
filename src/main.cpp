@@ -11,7 +11,7 @@
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
 
-#include "ui/tabs/render_tabs.h"
+#include "ui/tabs/render-tabs.h"
 
 static void glfw_error_callback(int error, const char* description)
 {

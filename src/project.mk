@@ -1,6 +1,6 @@
 include dependencies/imgui/project.mk
-include src/context_management/project.mk
-include src/ressources_loading/project.mk
+include src/context-management/project.mk
+include src/ressources-loading/project.mk
 include src/ui/project.mk
 
 MUSIC_MANAGER-EXE-NAME = $(BIN)/music-manager-gui-make-exe

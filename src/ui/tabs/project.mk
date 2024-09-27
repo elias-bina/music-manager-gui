@@ -1,2 +1,2 @@
 
-TABS-SRC = src/ui/tabs/render_tabs.cpp
+TABS-SRC = src/ui/tabs/render-tabs.cpp

@@ -10,7 +10,7 @@ class SongWidget;
 #include "widget.h"
 #include "GLFW/glfw3.h"
 
-#include "ressources_loading/texture_load.h"
+#include "ressources-loading/texture-load.h"
 #include "ui/widgets/song-observer.h"
 
 class SongWidget : RenderableWidget

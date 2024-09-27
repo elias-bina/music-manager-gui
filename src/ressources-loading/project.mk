@@ -1,0 +1,1 @@
+RESSOURCE-LOAD-SRC = src/ressources-loading/texture-load.cpp

@@ -6,7 +6,7 @@
 
 #include "GLFW/glfw3.h"
 
-#include "ressources_loading/texture_load.h"
+#include "ressources-loading/texture-load.h"
 
 bool LoadTextureFromMemory(const void* data, size_t data_size, LoadedTexture* texture)
 {
