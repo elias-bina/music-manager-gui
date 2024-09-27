@@ -2,3 +2,4 @@ bin/
 *.o
 imgui.ini
 downloaded_songs/
+music-manager-gui.exe

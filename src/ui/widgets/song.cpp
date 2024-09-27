@@ -1,5 +1,15 @@
 #include <iostream>
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#include <windows.h>
+#include <io.h>
+#define F_OK 0
+#define access _access
+#else
 #include <unistd.h>
+#endif
+
+
 
 #include "imgui/imgui.h"
 
@@ -47,6 +57,32 @@ void SongWidget::Render(){
 			
 			printf("%s", ("TELECHARGE " + _link + " BATARD\n").c_str());
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+			STARTUPINFO si;
+			PROCESS_INFORMATION pi;
+
+			ZeroMemory( &si, sizeof(si) );
+			si.cb = sizeof(si);
+			ZeroMemory( &pi, sizeof(pi) );
+
+			char* cmdline = strdup(("./dependencies/yt-dlp/yt-dlp.sh " + _link + "-x --audio-format mp3 -o " + "downloaded_songs/" + _name).c_str());
+			// Start the child process. 
+			if( !CreateProcessA( NULL,   // No module name (use command line)
+				cmdline,        // Command line
+				NULL,           // Process handle not inheritable
+				NULL,           // Thread handle not inheritable
+				FALSE,          // Set handle inheritance to FALSE
+				0,              // No creation flags
+				NULL,           // Use parent's environment block
+				NULL,           // Use parent's starting directory 
+				&si,            // Pointer to STARTUPINFO structure
+				&pi )           // Pointer to PROCESS_INFORMATION structure
+			) 
+			{
+				printf( "CreateProcess failed (%d).\n", (int)GetLastError() );
+				return;
+			}
+#else
 			if (fork() == 0) {
 			/*
 			* fork() returns 0 to the child process
@@ -60,6 +96,7 @@ void SongWidget::Render(){
 			*/
 			exit(1);
 			}
+#endif
 		}
 		// ImGui::PopStyleVar();
 	}
