@@ -18,7 +18,7 @@
 
 
 
-SongWidget::SongWidget(std::string name, std::string link, LoadedTexture* texture): _texture{texture}, _name{name}, _link{link}, _is_selected{false}
+SongWidget::SongWidget(std::string name, std::string link, LoadedTexture* texture): _texture{texture}, _name{name}, _link{link}, _is_selected{false}, _should_update{0}
 {
 	_downloaded = (access(("downloaded_songs/" + name + ".mp3").c_str(), F_OK) == 0);
 }
@@ -56,6 +56,9 @@ void SongWidget::Render(){
 			_downloaded = true;
 			
 			printf("%s", ("TELECHARGE " + _link + " BATARD\n").c_str());
+
+			// TODO: Download manager
+
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 			STARTUPINFO si;

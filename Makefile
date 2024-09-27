@@ -39,7 +39,6 @@ else
 LDFLAGS+=-fsanitize=undefined,address
 CFLAGS+=-fsanitize=undefined,address
 LINUX_GL_LIBS = -lGL
-LIBS = -lgdi32
 endif
 
 ifeq ($(UNAME_S), Linux) #LINUX
