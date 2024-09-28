@@ -12,11 +12,14 @@ sudo apt-get install \
   libasound2-dev libpulse-dev libudev-dev libx11-dev \
   libxext-dev libxinerama-dev libgl1-mesa-dev libgles2-mesa-dev \
   qtbase5-dev qttools5-dev-tools qtwayland5 liblua5.2-dev lua5.2 \
-  libavcodec-dev libavutil-dev libavformat-dev
+  libavcodec-dev libavutil-dev libavformat-dev 
+
+# Vlc runtime
+sudo apt-get install \
+  libvlc5
 
 # Windows
 
-sudo apt-get install libglfw3-dev pkg-config libxkbcommon-dev xorg-dev
-sudo snap install cmake --classic
+sudo apt-get install libglfw3-dev pkg-config libxkbcommon-dev xorg-dev cmake mingw-w64
 
 cmake -S dependencies/glfw -B dependencies/glfw/build -D CMAKE_TOOLCHAIN_FILE=CMake/x86_64-w64-mingw32.cmake
