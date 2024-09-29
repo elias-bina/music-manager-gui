@@ -182,9 +182,7 @@ int main(int, char**) {
 
 				ImVec2 size = ImGui::GetWindowSize();
 
-				if (ImGui::Button("Press me"))
-					printf("Button has been pressed\n");
-				
+
 				ImGui::Text("Size of Window: (%f,%f); Framerate = %f", size.x, size.y, io.Framerate);
 				ImGui::EndGroup();
 

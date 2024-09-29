@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 
+#include "ressources-loading/audio-player.h"
+
 #include "ui/widgets/widget.h"
 #include "ui/widgets/song.h"
 
@@ -11,6 +13,9 @@ class CurrentSongWidget : RenderableWidget
 {
 private:
 	LoadedTexture _play_texture;
+	LoadedTexture _stop_texture;
+
+	AudioPlayer _audio_player;
 
 	std::shared_ptr<SongWidget> _current_song = nullptr;
 public:
