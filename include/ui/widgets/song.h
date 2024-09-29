@@ -18,6 +18,7 @@ class SongWidget : RenderableWidget
 private:
 	LoadedTexture* _download_texture;
 	LoadedTexture* _valid_texture;
+	LoadedTexture* _delete_texture;
 	std::string _name;
 	std::string _link;
 	bool _downloaded;
@@ -30,7 +31,7 @@ private:
 	std::vector<SongObserver*> _list_observers;
 
 public:
-	SongWidget(std::string name, std::string link, LoadedTexture* download_texture, LoadedTexture* valid_texture);
+	SongWidget(std::string name, std::string link, LoadedTexture* download_texture, LoadedTexture* valid_texture, LoadedTexture* delete_texture);
 	~SongWidget();
 
 	void Render();

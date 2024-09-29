@@ -10,6 +10,8 @@ SongWidgetList::SongWidgetList()
 	IM_ASSERT(ret);
 	ret = LoadTextureFromFile("ressources/ValidIconWhite.png", &_valid_icon);
 	IM_ASSERT(ret);
+	ret = LoadTextureFromFile("ressources/DeleteIconWhite.png", &_delete_icon);
+	IM_ASSERT(ret);
 }
 
 void SongWidgetList::Render(){
@@ -26,7 +28,7 @@ void SongWidgetList::Render(){
 }
 
 void SongWidgetList::AddSong(std::string song_name, std::string song_link){
-	_song_list.push_back(std::make_shared<SongWidget>(song_name, song_link, &_download_icon, &_valid_icon));
+	_song_list.push_back(std::make_shared<SongWidget>(song_name, song_link, &_download_icon, &_valid_icon, &_delete_icon));
 	_song_list.back()->addObserver(this);
 }
 

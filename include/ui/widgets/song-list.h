@@ -17,6 +17,7 @@ class SongWidgetList : RenderableWidget, SongObserver
 private:
 	LoadedTexture _download_icon;
 	LoadedTexture _valid_icon;
+	LoadedTexture _delete_icon;
 
 public:
 	CurrentSongWidget* _current_song = nullptr;
