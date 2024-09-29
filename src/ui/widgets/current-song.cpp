@@ -35,7 +35,24 @@ void CurrentSongWidget::Render(){
 
 			ImGui::SameLine();
 
-			ImGui::Text("%s / %s", hms_display(_audio_player.get_position()).c_str(), hms_display(_audio_player.get_duration()).c_str());
+			ImGui::BeginGroup();
+
+			double curr_position = _audio_player.get_position();
+			double curr_duration = _audio_player.get_duration();
+			float curr_position_ratio = (float)(curr_position / curr_duration);
+
+			int size = snprintf(NULL, 0,"%s / %s", hms_display( _audio_player.get_position()).c_str(), hms_display(_audio_player.get_duration()).c_str()) + 1;
+			char* fmt = (char*)malloc(sizeof(char) * size + 1);
+
+			snprintf(fmt, size, "%s / %s", hms_display( _audio_player.get_position()).c_str(), hms_display(_audio_player.get_duration()).c_str());
+			
+			ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x);
+			ImGui::SliderFloat(("##Slider" +  _current_song->getName()).c_str(), &curr_position_ratio, 0, 1, fmt, ImGuiSliderFlags_None);
+			ImGui::PopItemWidth();
+
+			free(fmt);
+
+			ImGui::EndGroup();
 
 		}
 	}
