@@ -38,6 +38,8 @@ public:
 	void Update(std::shared_ptr<SongWidget> song);
 
 	std::string getName();
+	std::string getLink();
+
 	bool isSelected();
 	void deselect();
 	void select();

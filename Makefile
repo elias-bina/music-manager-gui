@@ -14,9 +14,15 @@ CFLAGS+=-fpermissive -Wall -Wextra -Wpedantic -Wfloat-equal -Wformat-nonliteral 
 CFLAGS+=-Wshadow -Wconversion -Werror 
 CFLAGS+=-O0 -g3
 CFLAGS+=-std=c++17
+
 INCLUDES=-I./include -I./dependencies -I./dependencies/vlc/include
+
 LDFLAGS+=-L./dependencies/vlc/lib/.libs 
 LDFLAGS+=-lvlc
+
+INCLUDES+=-I./dependencies/sqlite/build
+LDFLAGS+=dependencies/sqlite/build/.libs/libsqlite3.a
+
 UNAME_S := $(shell uname -s)
 
 CXXFLAGS = -std=c++11 

@@ -102,6 +102,10 @@ std::string SongWidget::getName(){
 	return _name;
 }
 
+std::string SongWidget::getLink(){
+	return _link;
+}
+
 bool SongWidget::isSelected(){
 	return _is_selected;
 }

@@ -5,7 +5,10 @@
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
 #endif
+
 #include "GLFW/glfw3.h"
+
+#include "sqlite3.h"
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
 #pragma comment(lib, "legacy_stdio_definitions")
@@ -48,6 +51,8 @@ int main(int, char**) {
 	bool show_main_window = true;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); // backbuffer color
 	AppContext context;
+
+	context._dbManager.createDatabase();
 
 	context._songWidgets.AddSong("Nier Replicant 1.22 - Emil - Sacrifice", "https://www.youtube.com/watch?v=geghzmOuYR8");
 	context._songWidgets.AddSong("Chime & DNAKM - Make 'em Proud", "https://www.youtube.com/watch?v=iVAamocy_OI");
@@ -112,7 +117,8 @@ int main(int, char**) {
 	context._songWidgets.AddSong("Kid Icarus Uprising - Lord Of The Underworld", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 	context._songWidgets.AddSong("Kid Icarus Uprising - Together Menu", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 
-
+	context.saveDatabase();
+	
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -209,6 +215,9 @@ int main(int, char**) {
 		glfwSwapBuffers(window);
 
 	}
+
+	printf("Nique ta mère\n");
+
 	// Cleanup
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
