@@ -22,6 +22,7 @@ private:
 	std::string _link;
 	bool _downloaded;
 
+	// TODO: Most liked moments in the song
 
 	bool _is_selected;
 	bool _should_update;

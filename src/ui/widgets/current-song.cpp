@@ -1,3 +1,5 @@
+#include "math.h"
+
 #include "imgui/imgui.h"
 
 #include "ressources-loading/audio-player.h"
@@ -40,6 +42,7 @@ void CurrentSongWidget::Render(){
 			double curr_position = _audio_player.get_position();
 			double curr_duration = _audio_player.get_duration();
 			float curr_position_ratio = (float)(curr_position / curr_duration);
+			float prev_position_ratio = curr_position_ratio;
 
 			int size = snprintf(NULL, 0,"%s / %s", hms_display( _audio_player.get_position()).c_str(), hms_display(_audio_player.get_duration()).c_str()) + 1;
 			char* fmt = (char*)malloc(sizeof(char) * size + 1);
@@ -49,6 +52,10 @@ void CurrentSongWidget::Render(){
 			ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x);
 			ImGui::SliderFloat(("##Slider" +  _current_song->getName()).c_str(), &curr_position_ratio, 0, 1, fmt, ImGuiSliderFlags_None);
 			ImGui::PopItemWidth();
+
+			if(fabs(prev_position_ratio - curr_position_ratio) > 0.0001){
+				_audio_player.set_position(curr_position_ratio * curr_duration);
+			}
 
 			free(fmt);
 
