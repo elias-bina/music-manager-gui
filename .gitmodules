@@ -7,3 +7,6 @@
 [submodule "dependencies/vlc"]
 	path = dependencies/vlc
 	url = https://github.com/videolan/vlc.git
+[submodule "dependencies/sqlite"]
+	path = dependencies/sqlite
+	url = https://github.com/sqlite/sqlite.git
