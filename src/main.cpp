@@ -138,9 +138,11 @@ int main(int, char**) {
 
 		// Gui stuff
 		if(show_main_window){
+
 			const ImGuiViewport* viewport = ImGui::GetMainViewport();
 			ImGui::SetNextWindowPos(viewport->Pos);
 			ImGui::SetNextWindowSize(viewport->Size);
+
 			if (ImGui::Begin("##Fullscreen window", &show_main_window, flags)){
 
 				if (ImGui::BeginMainMenuBar()) {
@@ -155,7 +157,8 @@ int main(int, char**) {
 							printf("Will open database file\n");
 						}
 						if (ImGui::MenuItem("Save", "Ctrl+S")) {
-							printf("Will save database file\n");	
+							context.saveDatabase();
+							printf("Save database file\n");	
 						}
 						if (ImGui::MenuItem("Save as..")) { 
 							printf("Will save new database file\n");
@@ -181,7 +184,10 @@ int main(int, char**) {
 				
 				ImGui::BeginGroup();
 
-				ImGui::Text(" ");
+
+				ImGui::NewLine();
+				// ImGui::Spacing();
+
 				ImGui::SeparatorText("Selected Song");
 
 				context._currentSong.Render();

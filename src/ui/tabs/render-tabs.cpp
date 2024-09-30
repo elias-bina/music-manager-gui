@@ -19,12 +19,12 @@ void RenderTabsManagement(AppContext &context)
 		}
 		if (ImGui::BeginTabItem("Add Song"))
 		{
-			ImGui::Text("Poyo <3\nI will add new songs here");
+			context._addSongWidget.Render();
 			ImGui::EndTabItem();
 		}
 
 		ImGui::BeginDisabled();
-		if (ImGui::BeginTabItem("Modify Song (Name modifiable here ?)"))
+		if (ImGui::BeginTabItem("Modify Song"))
 		{
 			ImGui::Text("U wrong\nI will modify songs here (Should be clickable only if I have a song selected)");
 			ImGui::EndTabItem();
