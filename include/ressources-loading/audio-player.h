@@ -13,13 +13,17 @@ private:
 	libvlc_media_player_t* _media_player = NULL;
 
 	bool _is_seeking = false;
+	bool _is_paused = false;
 	double _seeked_position;
 public:
 
 	void set_song(std::string filepath);
 
 	bool is_playing();
+	bool is_seeking();
+
 	void play();
+	void pause();
 	void stop();
 
 	double get_duration();

@@ -39,8 +39,19 @@ bool AudioPlayer::is_playing(){
 	return libvlc_media_player_is_playing(_media_player);
 }
 
+bool AudioPlayer::is_seeking(){
+	return _is_seeking;
+}
+
+
 void AudioPlayer::play(){
 	libvlc_media_player_play(_media_player);
+}
+
+void AudioPlayer::pause(){
+	libvlc_media_player_pause(_media_player);
+	_is_paused = true;
+	_seeked_position = ((double)libvlc_media_player_get_time(_media_player)) / 1000.0;
 }
 
 void AudioPlayer::stop(){
@@ -51,7 +62,11 @@ double AudioPlayer::get_duration(){
 	return ((double)libvlc_media_player_get_length(_media_player)) / 1000.0;
 }
 
+
+
 double AudioPlayer::get_position(){
+	if (_is_paused)
+		return _seeked_position;
 
 	if(_is_seeking){
 		if (is_playing())
@@ -67,6 +82,7 @@ double AudioPlayer::get_position(){
 
 void AudioPlayer::set_position(double pos){
 	_is_seeking = true;
+	_is_paused = false;
 	_seeked_position = pos;
 	libvlc_media_player_pause(_media_player);
 	libvlc_media_player_set_time(_media_player, (int)pos * 1000, false);

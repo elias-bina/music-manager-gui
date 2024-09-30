@@ -23,10 +23,10 @@ void CurrentSongWidget::Render(){
 		ImGui::Text("%s",_current_song->getName().c_str());
 
 		if (_current_song->isDownloaded()){
-			if(_audio_player.is_playing()){
+			if(_audio_player.is_playing() || _audio_player.is_seeking()){				
 				if(ImGui::ImageButton(("##PauseButton" +  _current_song->getName()).c_str(),(void*)(intptr_t)_stop_texture.texture, ImVec2( (float)_stop_texture.width / 2,  (float)_stop_texture.height / 2)))
 				{
-					_audio_player.stop();
+					_audio_player.pause();
 				}
 			}
 			else{
@@ -48,8 +48,9 @@ void CurrentSongWidget::Render(){
 			char* fmt = (char*)malloc(sizeof(char) * size + 1);
 
 			snprintf(fmt, size, "%s / %s", hms_display( _audio_player.get_position()).c_str(), hms_display(_audio_player.get_duration()).c_str());
-			
+
 			ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x);
+			ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 1);
 			ImGui::SliderFloat(("##Slider" +  _current_song->getName()).c_str(), &curr_position_ratio, 0, 1, fmt, ImGuiSliderFlags_None);
 			ImGui::PopItemWidth();
 
