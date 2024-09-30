@@ -68,5 +68,6 @@ void CurrentSongWidget::Render(){
 
 void CurrentSongWidget::SetSong(std::shared_ptr<SongWidget> song){
 	_current_song = song;
-	_audio_player.set_song(_current_song->getName());
+	if(song->isDownloaded())
+		_audio_player.set_song(_current_song->getName());
 }

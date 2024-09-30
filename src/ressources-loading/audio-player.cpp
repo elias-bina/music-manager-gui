@@ -33,6 +33,10 @@ void AudioPlayer::set_song(std::string filepath){
 		libvlc_media_release(_current_loaded_media);
 		return;
 	}
+
+	play();
+	usleep(10);
+	pause();
 }
 
 bool AudioPlayer::is_playing(){
