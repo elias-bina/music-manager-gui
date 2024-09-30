@@ -50,6 +50,7 @@ bool AudioPlayer::is_seeking(){
 
 void AudioPlayer::play(){
 	libvlc_media_player_play(_media_player);
+	_is_paused = false;
 }
 
 void AudioPlayer::pause(){
