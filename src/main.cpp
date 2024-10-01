@@ -14,6 +14,9 @@
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
 
+#include "context-management/app-context.h"
+#include "context-management/top-menu.h"
+
 #include "ui/tabs/render-tabs.h"
 
 static void glfw_error_callback(int error, const char* description)
@@ -51,6 +54,7 @@ int main(int, char**) {
 	bool show_main_window = true;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); // backbuffer color
 	AppContext context;
+	TopMenu topMenu(&context);
 
 	context._dbManager.createDatabase();
 
@@ -80,45 +84,8 @@ int main(int, char**) {
 	context._songWidgets.AddSong("Sonic Rush - A New Day", "https://www.youtube.com/watch?v=NMBL43I3r4g");
 	context._songWidgets.AddSong("Sonic Rush - Bomber Barbara", "https://www.youtube.com/watch?v=L4KIxqTYGGI");
 	context._songWidgets.AddSong("Sonic Rush - Bomber Barbara (Silent Dreams Remix)", "https://www.youtube.com/watch?v=P6L-jO28O9U");
-	context._songWidgets.AddSong("Pokemon Scarlet & Violet - Final Fight", "https://www.youtube.com/watch?v=pTj1v1sAYXQ");
-	context._songWidgets.AddSong("One Punch Man - Seigi Shikkou", "https://www.youtube.com/watch?v=rW7OB_HDCGQ");
-	context._songWidgets.AddSong("Dead Cells - Fractured Shrines (0:06)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Colors - Reach for the Stars", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Colors - Terminal Velocity", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Pokemon Mystery Dungeon Explorers of Sky - Oh no !", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Pokemon Mystery Dungeon The Bright Future - I Wont Say Goodbye (0:20)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Pokemon Mystery Dungeon Explorers of Sky - Ending Theme", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Hollow Knight - Hornet", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Hollow Knight - Mantis Lords", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Hollow Knight - Truth, Beauty and Hatred", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kirby and the Forgotten Land - Masked and Wild:DDD", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kirby and the Forgotten Land - King Dedede, Roar of Dedede", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kirby and the Forgotten Land - The King's Turn to Shine", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Super Pokemon Rumble - Charge Battle", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Cyber Space 1-5: Dropaholic (0:23)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Cyber Space 1-7: Time Flyer", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Cyber Space 4-1: Exceed Match (0:49)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Guardian: STRIDER", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Guardian: TANK", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Guardian: GHOST", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - I'm here (0:30)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Undefeatable (0:10)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Break Through it all", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - Find Your Flame (0:50)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - I'm Here (Orchestral Ver.)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Sonic Frontiers - I'm Here (Revisited)", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Boss Fight 1", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Magnus's Theme", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Dark Pit", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Dark Pit's Theme", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Boss Theme 2", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Thunder Cloud Temple", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Chaos Island", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Lord Of The Underworld", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-	context._songWidgets.AddSong("Kid Icarus Uprising - Together Menu", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 
-	context.saveDatabase();
-	
+
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -143,38 +110,11 @@ int main(int, char**) {
 			ImGui::SetNextWindowPos(viewport->Pos);
 			ImGui::SetNextWindowSize(viewport->Size);
 
+
 			if (ImGui::Begin("##Fullscreen window", &show_main_window, flags)){
 
-				if (ImGui::BeginMainMenuBar()) {
-					if (ImGui::BeginMenu("Add Song")) {
-						if (ImGui::MenuItem("Create Song From Link", "Ctrl+L")) { 
-							printf("Will create Song From Link\n");
-						}
-						if (ImGui::MenuItem("Create Song From Youtube", "Ctrl+Y")) { 
-							printf("Will create Song From Youtube\n");
-						}
-						if (ImGui::MenuItem("Open", "Ctrl+O")) { 
-							printf("Will open database file\n");
-						}
-						if (ImGui::MenuItem("Save", "Ctrl+S")) {
-							context.saveDatabase();
-							printf("Save database file\n");	
-						}
-						if (ImGui::MenuItem("Save as..")) { 
-							printf("Will save new database file\n");
-						}
-						ImGui::EndMenu();
-					}
-
-					if (ImGui::BeginMenu("Settings")) {
-						if (ImGui::MenuItem("Choose download folder")) { 
-							printf("Will allow to change download folder\n");
-						}
-						ImGui::EndMenu();
-					}
-
-					ImGui::EndMainMenuBar();
-				}
+				topMenu.Render();
+				
 
 				ImGui::BeginGroup();
 				RenderTabsManagement(context);

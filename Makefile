@@ -17,6 +17,7 @@ CFLAGS+=-std=c++17
 
 INCLUDES=-I./include -I./dependencies -I./dependencies/vlc/include
 
+LDFLAGS+=-pthread
 LDFLAGS+=-L./dependencies/vlc/lib/.libs 
 LDFLAGS+=-lvlc
 

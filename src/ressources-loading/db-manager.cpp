@@ -15,19 +15,19 @@ static bool wrap_prepare(sqlite3* db, const char* sql, sqlite3_stmt** stmt){
 		fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db));
 		return false;
 	}else{
-		fprintf(stdout, "Prepared statement successfully\n");
+		// fprintf(stdout, "Prepared statement successfully\n");
 	}
 	return true;
 }
 
 static bool wrap_text_bind(sqlite3* db, sqlite3_stmt* stmt, int index, const char* text){
 	char* txt = strdup(text);
-	int rc = sqlite3_bind_text(stmt, index, txt, (int)strlen(txt), NULL);
+	int rc = sqlite3_bind_text(stmt, index, txt, (int)strlen(txt), free);
 	if( rc != SQLITE_OK ){
 		fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db));
 		return false;
 	}else{
-		fprintf(stdout, "Bind text successfully\n");
+		// fprintf(stdout, "Bind text successfully\n");
 	}
 	return true;
 }
@@ -43,7 +43,7 @@ bool DbManager::exec_sql(sqlite3 *db, sqlite3_stmt* stmt){
 			fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db));
 			return false;
 		}else{
-			fprintf(stdout, "Table created successfully\n");
+			// fprintf(stdout, "Table created successfully\n");
 		}
 		rc = sqlite3_step( stmt );
 	}
@@ -53,7 +53,7 @@ bool DbManager::exec_sql(sqlite3 *db, sqlite3_stmt* stmt){
 		fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db));
 		return false;
 	}else{
-		fprintf(stdout, "Table created successfully\n");
+		// fprintf(stdout, "Table created successfully\n");
 	}
 
 	sqlite3_close(db);

@@ -35,7 +35,7 @@ void AudioPlayer::set_song(std::string filepath){
 	}
 
 	play();
-	usleep(10);
+	usleep(30);
 	pause();
 }
 
